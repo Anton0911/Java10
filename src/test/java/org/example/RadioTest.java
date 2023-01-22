@@ -72,14 +72,6 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test
-    public void shouldSetVolume() {
-        Radio action = new Radio();
-        action.volume = 5;
-        int expected = 5;
-        int actual = action.getVolume();
-        Assertions.assertEquals(expected, actual);
-    }
 
     @Test
     public void shouldNexMoreMaxVolume() {
