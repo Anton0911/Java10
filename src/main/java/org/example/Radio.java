@@ -1,17 +1,52 @@
 package org.example;
 
 public class Radio {
-    public int numberRadio;
+    private int quantity = 10;
+    private int minNumberRadio = 0;
+    private int maxNumberRadio = 9;
+    private int numberRadio = minNumberRadio;
+    private int volume;
+    private int maxVolume = 100;
+    private int minVolume = 0;
+
+    public Radio(int quantity) {
+        this.quantity = quantity;
+        maxNumberRadio = quantity - 1;
+    }
+
+    public Radio() {
+
+    }
 
     public int getNumberRadio() {
         return numberRadio;
     }
 
+    public int getMinNumberRadio() {
+        return minNumberRadio;
+    }
+
+    public int getMaxNumberRadio() {
+        return maxNumberRadio;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public int getMaxVolume() {
+        return maxVolume;
+    }
+
+    public int getMinVolume() {
+        return minVolume;
+    }
+
     public void setNumberRadio(int newNumberRadio) {
-        if (newNumberRadio > 9) {
+        if (newNumberRadio > maxNumberRadio) {
             return;
         }
-        if (newNumberRadio < 0) {
+        if (newNumberRadio < minNumberRadio) {
             return;
         }
         numberRadio = newNumberRadio;
@@ -19,8 +54,8 @@ public class Radio {
 
     public void increaseNumberRadio() {
         int target = numberRadio + 1;
-        if (target > 9) {
-            target = 0;
+        if (target > maxNumberRadio) {
+            target = minNumberRadio;
         }
         numberRadio = target;
 
@@ -28,23 +63,27 @@ public class Radio {
 
     public void decreaseNumberRadio() {
         int target = numberRadio - 1;
-        if (target < 0) {
-            target = 9;
+        if (target < minNumberRadio) {
+            target = maxNumberRadio;
         }
         numberRadio = target;
     }
 
-    public int volume;
-
-    public int getVolume() {
-        return volume;
+    public void setVolume(int newVolume) {
+        if (newVolume > maxVolume) {
+            return;
+        }
+        if (newVolume < minVolume) {
+            return;
+        }
+        volume = newVolume;
     }
 
 
     public void increaseVolume() {
         int target = volume + 1;
-        if (target > 10) {
-            target = 0;
+        if (target > maxVolume) {
+            target = maxVolume;
         }
         volume = target;
 
@@ -52,8 +91,8 @@ public class Radio {
 
     public void decreaseVolume() {
         int target = volume - 1;
-        if (target < 0) {
-            target = 10;
+        if (target < minVolume) {
+            target = minVolume;
         }
         volume = target;
     }

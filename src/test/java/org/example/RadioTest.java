@@ -4,6 +4,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class RadioTest {
+
+    @Test
+    public void test() {
+        Radio action = new Radio(10);
+        Assertions.assertEquals(0, action.getMinNumberRadio());
+        Assertions.assertEquals(9, action.getMaxNumberRadio());
+        Assertions.assertEquals(0, action.getNumberRadio());
+
+    }
+
     @Test
     public void shouldSetNumberRadio() {
         Radio action = new Radio();
@@ -76,17 +86,27 @@ public class RadioTest {
     @Test
     public void shouldNexMoreMaxVolume() {
         Radio action = new Radio();
-        action.volume = 10;
+        action.setVolume(100);
         action.increaseVolume();
-        int expected = 0;
-        int actual = action.getVolume();
+        int expected = 100;
+        int actual = action.getMaxVolume();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldMoreMaxVolume() {
+        Radio action = new Radio();
+        action.setVolume(110);
+        action.increaseVolume();
+        int expected = 100;
+        int actual = action.getMaxVolume();
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     public void shouldNexVolume() {
         Radio action = new Radio();
-        action.volume = 5;
+        action.setVolume(5);
         action.increaseVolume();
         int expected = 6;
         int actual = action.getVolume();
@@ -96,17 +116,27 @@ public class RadioTest {
     @Test
     public void shouldPrevMoreMinVolume() {
         Radio action = new Radio();
-        action.volume = 0;
+        action.setVolume(0);
         action.decreaseVolume();
-        int expected = 10;
-        int actual = action.getVolume();
+        int expected = 0;
+        int actual = action.getMinVolume();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldLessMoreMinVolume() {
+        Radio action = new Radio();
+        action.setVolume(-1);
+        action.decreaseVolume();
+        int expected = 0;
+        int actual = action.getMinVolume();
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     public void shouldPrevVolume() {
         Radio action = new Radio();
-        action.volume = 5;
+        action.setVolume(5);
         action.decreaseVolume();
         int expected = 4;
         int actual = action.getVolume();
